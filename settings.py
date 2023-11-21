@@ -1,7 +1,7 @@
 import math
 
 # game settings
-RES = WIDTH, HEIGHT = 1600, 900
+RES = WIDTH, HEIGHT = 1920, 1080
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 0
@@ -20,7 +20,7 @@ MOUSE_BORDER_RIGHT = WIDTH - MOUSE_BORDER_LEFT
 
 FLOOR_COLOR = (30, 30, 30)
 
-FOV = math.pi / 3
+FOV = math.pi / 3  # ray-casting
 HALF_FOV = FOV / 2
 NUM_RAYS = WIDTH // 2
 HALF_NUM_RAYS = NUM_RAYS // 2
