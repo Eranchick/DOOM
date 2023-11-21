@@ -33,6 +33,7 @@ class Game:
         self.weapon = Weapon(self)
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
+        pg.mixer.music.play(-1)
 
     def update(self):
         self.player.update()
@@ -44,11 +45,11 @@ class Game:
         pg.display.set_caption(f'{self.clock.get_fps()    :.1f}')
 
     def draw(self):
-        #self.screen.fill('black')
+        # self.screen.fill('black')
         self.object_renderer.draw()
         self.weapon.draw()
-        #self.map.draw()
-        #self.player.draw()
+        # self.map.draw()
+        # self.player.draw()
 
     def check_events(self):
         self.global_trigger = False
@@ -58,6 +59,7 @@ class Game:
             elif event.type == self.global_event:
                 self.global_trigger = True
             self.player.single_fire_event(event)
+            self.weapon.check_weapon_change(event)
 
     def run(self):
         while True:
