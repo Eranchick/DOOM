@@ -15,6 +15,7 @@ class ObjectRenderer:
         self.digits = dict(zip(map(str, range(11)), self.digit_images))
         self.game_over_image = self.get_texture('resources/textures/game_over.png', RES)
         self.win_image = self.get_texture('resources/textures/win.png', RES)
+        self.arial_font = None
 
 
     def draw(self):
@@ -33,6 +34,9 @@ class ObjectRenderer:
         for i, char in enumerate(health):
             self.screen.blit(self.digits[char], (i * self.digit_size, 0))
         self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size, 0))
+
+    def draw_debug(self):
+        pass
 
     def player_damage(self):
         self.screen.blit(self.blood_screen, (0, 0))
