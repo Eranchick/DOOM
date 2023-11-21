@@ -20,7 +20,7 @@ MOUSE_BORDER_RIGHT = WIDTH - MOUSE_BORDER_LEFT
 
 FLOOR_COLOR = (30, 30, 30)
 
-FOV = math.pi / 3  # ray-casting
+FOV = math.pi / 3
 HALF_FOV = FOV / 2
 NUM_RAYS = WIDTH // 2
 HALF_NUM_RAYS = NUM_RAYS // 2
