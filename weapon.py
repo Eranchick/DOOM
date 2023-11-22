@@ -8,7 +8,7 @@ class Weapon(AnimatedSprite):
         self.root_path = self.path
         self.weapon_index = 0  # index in self.weapons list
         self.weapons = ('shotgun', 'chainsaw')  # all weapons of game
-        self.weapons_inventory = ['shotgun']
+        self.weapons_inventory = ['shotgun', 'chainsaw']
 
         self.weapons_max_attack_dist = {'shotgun':20, 'chainsaw': 4}  # max attack distance
         self.weapons_damage = {'shotgun': 50, 'chainsaw': 7500}  # damage
