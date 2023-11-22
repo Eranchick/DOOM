@@ -87,18 +87,6 @@ class AnimatedSprite(SpriteObject):
                 images.append(img)
         return images
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class WeaponSprite(SpriteObject):
+    def __init__(self):
+        pass
