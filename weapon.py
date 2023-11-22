@@ -7,14 +7,15 @@ class Weapon(AnimatedSprite):
         self.path = path
         self.root_path = self.path
         self.weapon_index = 0  # index in self.weapons list
-        self.weapons = ('shotgun', 'chainsaw')  # weapons
+        self.weapons = ('shotgun', 'chainsaw')  # all weapons of game
+        self.weapons_inventory = ['shotgun']
 
         self.weapons_max_attack_dist = {'shotgun':20, 'chainsaw': 4}  # max attack distance
         self.weapons_damage = {'shotgun': 50, 'chainsaw': 7500}  # damage
         self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 0.6}  # scale
         self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90}  # animation time
 
-        self.weapons_index_letters = self.weapons[self.weapon_index]  # weapon index like 'shotgun', not 0
+        self.weapons_index_letters = self.weapons_inventory[self.weapon_index]  # weapon index like 'shotgun', not 0
 
         self.scale = self.weapons_scale[self.weapons_index_letters]
         self.damage = self.weapons_damage[self.weapons_index_letters]
@@ -34,7 +35,7 @@ class Weapon(AnimatedSprite):
     def check_weapon_change(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
             if event.button == 4:
-                if self.weapon_index < len(self.weapons) - 1:
+                if self.weapon_index < len(self.weapons_inventory) - 1:
                     self.weapon_index += 1
                 else:
                     self.weapon_index = 0
@@ -45,12 +46,12 @@ class Weapon(AnimatedSprite):
                 if self.weapon_index != 0:
                     self.weapon_index -= 1
                 else:
-                    self.weapon_index = len(self.weapons) - 1
+                    self.weapon_index = len(self.weapons_inventory) - 1
 
                 self.update_weapon()
 
     def update_weapon(self):  # change weapon if mousewheel move
-        self.weapons_index_letters = self.weapons[self.weapon_index]
+        self.weapons_index_letters = self.weapons_inventory[self.weapon_index]
 
         self.scale = self.weapons_scale[self.weapons_index_letters]
         self.damage = self.weapons_damage[self.weapons_index_letters]
