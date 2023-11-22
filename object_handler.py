@@ -46,6 +46,9 @@ class ObjectHandler:
         add_sprite(AnimatedSprite(game, pos=(1.5, 30.5)))
         add_sprite(AnimatedSprite(game, pos=(1.5, 24.5)))
 
+        # weapon
+        add_sprite(WeaponSprite(game))
+
         # npc map
         #add_npc(SoldierNPC(game, pos=(11.0, 19.0)))
         #add_npc(SoldierNPC(game, pos=(11.5, 4.5)))
