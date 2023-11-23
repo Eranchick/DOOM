@@ -1,7 +1,15 @@
 import math
+import screeninfo
+
+scr = str(screeninfo.get_monitors()[0])[7:]
+scr_width_index = scr.index('width=') + 6
+scr_width_index_last = scr[scr_width_index:].index(',') + scr_width_index  # will be updated soon
+print(scr, scr[scr_width_index:scr_width_index_last])
+print(scr_width_index, scr_width_index_last)
+scr_width = None
 
 # game settings
-RES = WIDTH, HEIGHT = 1920, 1080
+RES = WIDTH, HEIGHT = 1600, 900
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 0
