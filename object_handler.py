@@ -47,7 +47,7 @@ class ObjectHandler:
         add_sprite(AnimatedSprite(game, pos=(1.5, 24.5)))
 
         # weapon
-        add_sprite(WeaponSprite(game))
+        add_sprite(WeaponSprite(game, scale=0.2, shift=2.5)) # path='resources/sprites/weapon/chainsaw/map/map.png',pos=(11.5, 3.5), scale=0.8, shift=0.15)
 
         # npc map
         #add_npc(SoldierNPC(game, pos=(11.0, 19.0)))
