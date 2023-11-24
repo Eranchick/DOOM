@@ -90,6 +90,7 @@ class AnimatedSprite(SpriteObject):
 class WeaponSprite(SpriteObject):
     def __init__(self, game, path='resources/sprites/weapon/chainsaw/map/map.png',
                  pos=(11.5, 3.5), scale=0.8, shift=0.15):
+        self.pos = pos
         super().__init__(game, path, pos, scale, shift)
         self.path = path.rsplit('/', 1)[0]
         self.images = self.get_images(self.path)
@@ -104,3 +105,11 @@ class WeaponSprite(SpriteObject):
                     img = pg.image.load(path + '/map/map.png').convert_alpha()
                     images.append(img)
             return images
+
+    def update(self):
+        super().update()
+        self.collect()
+
+    def collect(self):
+        if math.sqrt(((self.pos[0] - self.player.x) ** 2 + (self.pos[1] - self.player.y) ** 2)) <= math.sqrt(5):
+            print(f'{self} collected')
