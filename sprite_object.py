@@ -112,4 +112,8 @@ class WeaponSprite(SpriteObject):
 
     def collect(self):
         if math.sqrt(((self.pos[0] - self.player.x) ** 2 + (self.pos[1] - self.player.y) ** 2)) <= math.sqrt(5):
-            print(f'{self} collected')
+            if self.path.rsplit('resources/sprites/weapon/')[1][:-4] not in self.game.weapon.weapons_inventory:
+                self.game.weapon.weapons_inventory.append(self.path.rsplit('resources/sprites/weapon/')[1][:-4])
+            self.game.weapon.weapon_index = len(self.game.weapon.weapons_inventory) - 1
+            self.game.weapon.update_weapon()
+            self.game.object_handler.sprite_list.remove(self)
