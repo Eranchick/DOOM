@@ -8,7 +8,7 @@ class Weapon(AnimatedSprite):
         self.root_path = self.path
         self.weapon_index = 0  # index in self.weapons list
         self.weapons = ('shotgun', 'chainsaw')  # all weapons of game
-        self.weapons_inventory = ['shotgun', 'chainsaw']
+        self.weapons_inventory = ['shotgun']
 
         self.weapons_max_attack_dist = {'shotgun':20, 'chainsaw': 4}  # max attack distance
         self.weapons_damage = {'shotgun': 50, 'chainsaw': 150}  # damage
@@ -57,7 +57,7 @@ class Weapon(AnimatedSprite):
         self.damage = self.weapons_damage[self.weapons_index_letters]
         self.animation_time = self.weapons_animation_time[self.weapons_index_letters]
         path = 'resources/sprites/weapon/'
-        super().__init__(self.game, path=path + self.weapons[self.weapon_index] + '/0.png', scale=self.scale,
+        super().__init__(self.game, path=path + self.weapons_inventory[self.weapon_index] + '/0.png', scale=self.scale,
                          animation_time=self.animation_time)
         self.images = deque(
             [pg.transform.smoothscale(img, (self.image.get_width() * self.scale, self.image.get_height() * self.scale))
