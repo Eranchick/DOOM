@@ -11,7 +11,7 @@ class Weapon(AnimatedSprite):
         self.weapons_inventory = ['shotgun', 'chainsaw']
 
         self.weapons_max_attack_dist = {'shotgun':20, 'chainsaw': 4}  # max attack distance
-        self.weapons_damage = {'shotgun': 50, 'chainsaw': 7500}  # damage
+        self.weapons_damage = {'shotgun': 50, 'chainsaw': 150}  # damage
         self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 0.6}  # scale
         self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90}  # animation time
 
