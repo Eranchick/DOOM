@@ -1,6 +1,8 @@
 import math
 from screeninfo import get_monitors
 
+SCREEN_RES_SCALE = 0.34  # scaleing screen res (0 < N <= 1)
+
 # calculating screen res
 scr = str(get_monitors()[0])[7:]  # getting monitor info
 
@@ -17,6 +19,12 @@ scr_height_index_last = scr[scr_height_index:].index(',') + scr_height_index  # 
 print(scr, scr[scr_height_index:scr_height_index_last])  # debug info about height
 print(scr_height_index, scr_height_index_last)  # debug info about height
 scr_height = int(scr[scr_height_index:scr_height_index_last])  # height var
+
+# scaling res
+scr_width *= SCREEN_RES_SCALE
+scr_height *= SCREEN_RES_SCALE
+
+scr_width, scr_height = int(scr_width), int(scr_height)
 
 # game settings
 RES = WIDTH, HEIGHT = scr_width, scr_height

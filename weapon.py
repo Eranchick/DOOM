@@ -1,4 +1,5 @@
 from sprite_object import *
+from settings import *
 
 
 class Weapon(AnimatedSprite):
@@ -24,7 +25,7 @@ class Weapon(AnimatedSprite):
         super().__init__(game=game, path=path + self.weapons[self.weapon_index] + '/0.png', scale=self.scale,
                          animation_time=self.animation_time)
         self.images = deque(
-            [pg.transform.smoothscale(img, (self.image.get_width() * self.scale, self.image.get_height() * self.scale))
+            [pg.transform.smoothscale(img, (self.image.get_width() * self.scale * SCREEN_RES_SCALE, self.image.get_height() * self.scale * SCREEN_RES_SCALE))
              for img in self.images])
 
         self.weapon_pos = (HALF_WIDTH - self.images[0].get_width() // 2, HEIGHT - self.images[0].get_height() - 300)
@@ -60,7 +61,7 @@ class Weapon(AnimatedSprite):
         super().__init__(self.game, path=path + self.weapons_inventory[self.weapon_index] + '/0.png', scale=self.scale,
                          animation_time=self.animation_time)
         self.images = deque(
-            [pg.transform.smoothscale(img, (self.image.get_width() * self.scale, self.image.get_height() * self.scale))
+            [pg.transform.smoothscale(img, (self.image.get_width() * self.scale * SCREEN_RES_SCALE, self.image.get_height() * self.scale * SCREEN_RES_SCALE))
              for img in self.images])
 
     def animate_shot(self):
@@ -76,7 +77,7 @@ class Weapon(AnimatedSprite):
 
     def draw(self):
         self.weapon_pos = (HALF_WIDTH - self.images[0].get_width() // 2,
-                           HEIGHT - self.images[0].get_height() + 15 + math.sin(pg.time.get_ticks() / 600) * 15)
+                           HEIGHT - self.images[0].get_height() + 15 + float(math.sin(pg.time.get_ticks() / 600) * 15) * SCREEN_RES_SCALE)
         self.game.screen.blit(self.images[0], self.weapon_pos)
 
     def update(self):
