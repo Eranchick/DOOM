@@ -13,6 +13,7 @@ class Player:
         self.rel = 0
         self.health_recovery_delay = 1
         self.time_prev = pg.time.get_ticks()
+        self.armor = 0
 
     def recovery_health(self):
         if self.check_health_recovry_delay() and self.health < PLAYER_MAX_HEALTH:
@@ -43,6 +44,7 @@ class Player:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
+
 
     def movement(self):
         sin_a = math.sin(self.angle)

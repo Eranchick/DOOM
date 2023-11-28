@@ -11,33 +11,34 @@ scr_width_index = scr.index('width=') + 6  # getting index of width 1st digit
 scr_width_index_last = scr[scr_width_index:].index(',') + scr_width_index  # getting index of width last digit
 print(scr, scr[scr_width_index:scr_width_index_last])  # debug info about width
 print(scr_width_index, scr_width_index_last)  # debug info about width
-scr_width = int(scr[scr_width_index:scr_width_index_last])  # width var
+WIDTH = int(scr[scr_width_index:scr_width_index_last])  # width var
 
 # height
 scr_height_index = scr.index('height=') + 7  # getting index of height 1st digit
 scr_height_index_last = scr[scr_height_index:].index(',') + scr_height_index  # getting index of height last digit
 print(scr, scr[scr_height_index:scr_height_index_last])  # debug info about height
 print(scr_height_index, scr_height_index_last)  # debug info about height
-scr_height = int(scr[scr_height_index:scr_height_index_last])  # height var
+HEIGHT = int(scr[scr_height_index:scr_height_index_last])  # height var
 
 # scaling res
-scr_width *= SCREEN_RES_SCALE
-scr_height *= SCREEN_RES_SCALE
+WIDTH *= SCREEN_RES_SCALE
+HEIGHT *= SCREEN_RES_SCALE
 
-scr_width, scr_height = int(scr_width), int(scr_height)
+WIDTH, HEIGHT = int(WIDTH), int(HEIGHT)
 
 # game settings
-RES = WIDTH, HEIGHT = scr_width, scr_height
+RES = WIDTH, HEIGHT
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 60
 
-PLAYER_POS = 1.5, 5  # mini_map
+PLAYER_POS = 1.5, 5  # player
 PLAYER_ANGLE = 0
 PLAYER_SPEED = 0.004
 PLAYER_ROT_SPEED = 0.002
 PLAYER_SIZE_SCALE = 60
 PLAYER_MAX_HEALTH = 100
+PLAYER_START_AMMO = 60
 
 MOUSE_SENSITIVITY = 0.0001125
 MOUSE_MAX_REL = 40
