@@ -38,16 +38,16 @@ class ObjectRenderer:
     def draw_player_health(self):
         health = str(self.game.player.health)
         for i, char in enumerate(health):
-            self.screen.blit(self.digits[char], (i * self.digit_size + 450 * SCREEN_RES_SCALE, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size + 450 * SCREEN_RES_SCALE, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+            self.screen.blit(self.digits[char], (i * self.digit_size + WIDTH * 0.28125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size + WIDTH * 0.28125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
 
     def draw_player_armor(self):
         armor = str(self.game.player.armor)
         for i, char in enumerate(armor):
             self.screen.blit(self.digits[char],
-                             (i * self.digit_size + 1000 * SCREEN_RES_SCALE, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                             (i * self.digit_size + WIDTH * 0.625, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
         self.screen.blit(self.digits['10'],
-                         ((i + 1) * self.digit_size + 1000 * SCREEN_RES_SCALE, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                         ((i + 1) * self.digit_size + WIDTH * 0.625, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
 
     def draw_back(self):
         pass
@@ -61,7 +61,7 @@ class ObjectRenderer:
             if char == '-':
                 char = '11'
             self.screen.blit(self.digits[char],
-                             (i * self.digit_size + 50, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                             (i * self.digit_size + (WIDTH * 0.04625), HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
 
     def player_damage(self):
         self.screen.blit(self.blood_screen, (0, 0))
