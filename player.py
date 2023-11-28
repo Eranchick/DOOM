@@ -40,10 +40,12 @@ class Player:
 
     def single_fire_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
-            if event.button == 1 and not self.shot and not self.game.weapon.reloading:
+            if event.button == 1 and not self.shot and not self.game.weapon.reloading and self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] != 0:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
+                if self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] != '-':
+                    self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] -= 1
 
 
     def movement(self):

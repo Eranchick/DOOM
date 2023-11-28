@@ -54,12 +54,7 @@ class Weapon(AnimatedSprite):
                 self.update_weapon()
 
     def update_weapon(self):  # change weapon if mousewheel move
-        self.weapons_index_letters = self.weapons_inventory[self.weapon_index]
 
-        self.scale = self.weapons_scale[self.weapons_index_letters]
-        self.damage = self.weapons_damage[self.weapons_index_letters]
-        self.animation_time = self.weapons_animation_time[self.weapons_index_letters]
-        self.ammo = self.weapons_ammo[self.weapons_index_letters]
         path = 'resources/sprites/weapon/'
         super().__init__(self.game, path=path + self.weapons_inventory[self.weapon_index] + '/0.png', scale=self.scale,
                          animation_time=self.animation_time)
@@ -86,3 +81,10 @@ class Weapon(AnimatedSprite):
     def update(self):
         self.check_animation_time()
         self.animate_shot()
+
+        self.weapons_index_letters = self.weapons_inventory[self.weapon_index]
+
+        self.scale = self.weapons_scale[self.weapons_index_letters]
+        self.damage = self.weapons_damage[self.weapons_index_letters]
+        self.animation_time = self.weapons_animation_time[self.weapons_index_letters]
+        self.ammo = self.weapons_ammo[self.weapons_index_letters]
