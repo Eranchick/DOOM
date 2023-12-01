@@ -33,7 +33,7 @@ class Player:
             self.game.new_game()
 
     def get_damage(self, damage):
-        self.health -= damage * (1 - self.armor / 100)
+        self.health -= int(damage * (1 - self.armor / 100))
         self.game.object_renderer.player_damage()
         self.game.sound.player_pain.play()
         self.check_game_over()
