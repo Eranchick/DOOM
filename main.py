@@ -10,6 +10,7 @@ from object_handler import *
 from weapon import *
 from sound import *
 from pathfining import *
+from UI import *
 
 
 class Game:
@@ -33,6 +34,7 @@ class Game:
         self.weapon = Weapon(self)
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
+        self.ui = UI(self)
         pg.mixer.music.play(-1)
 
     def update(self):
@@ -48,6 +50,7 @@ class Game:
         # self.screen.fill('black')
         self.object_renderer.draw()
         self.weapon.draw()
+        self.ui.update()
         # self.map.draw()
         # self.player.draw()
 

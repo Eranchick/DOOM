@@ -9,25 +9,13 @@ class ObjectRenderer:
         self.sky_image = self.get_texture('resources/textures/sky.png', (WIDTH, HALF_HEIGHT))
         self.sky_offset = 0
         self.blood_screen = self.get_texture('resources/textures/blood_screen.png', RES)
-        self.digit_size = int((HEIGHT / (15 * SCREEN_RES_SCALE)) * SCREEN_RES_SCALE)
-        self.digit_images = [self.get_texture(f'resources/textures/digits/{i}.png', [self.digit_size] * 2)
-                             for i in range(12)]  # keys 0-9 is nums, 10 is %, 11 is -
-        self.digits = dict(zip(map(str, range(12)), self.digit_images))
         self.game_over_image = self.get_texture('resources/textures/game_over.png', RES)
         self.win_image = self.get_texture('resources/textures/win.png', RES)
         self.arial_font = None
 
-
     def draw(self):
         self.draw_background()
         self.render_game_object()
-        self.draw_ui()
-
-    def draw_ui(self):
-        self.draw_back()
-        self.draw_player_armor()
-        self.draw_player_health()
-        self.draw_ammo()
 
     def win(self):
         self.screen.blit(self.win_image, (0, 0))
@@ -35,33 +23,8 @@ class ObjectRenderer:
     def game_over(self):
         self.screen.blit(self.game_over_image, (0, 0))
 
-    def draw_player_health(self):
-        health = str(self.game.player.health)
-        for i, char in enumerate(health):
-            self.screen.blit(self.digits[char], (i * self.digit_size + WIDTH * 0.28125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size + WIDTH * 0.28125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-
-    def draw_player_armor(self):
-        armor = str(self.game.player.armor)
-        for i, char in enumerate(armor):
-            self.screen.blit(self.digits[char],
-                             (i * self.digit_size + WIDTH * 0.625, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-        self.screen.blit(self.digits['10'],
-                         ((i + 1) * self.digit_size + WIDTH * 0.625, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-
-    def draw_back(self):
-        pass
-
     def draw_debug(self):
         pass
-
-    def draw_ammo(self):
-        ammo = str(self.game.weapon.ammo)
-        for i, char in enumerate(ammo):
-            if char == '-':
-                char = '11'
-            self.screen.blit(self.digits[char],
-                             (i * self.digit_size + (WIDTH * 0.04625), HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
 
     def player_damage(self):
         self.screen.blit(self.blood_screen, (0, 0))
