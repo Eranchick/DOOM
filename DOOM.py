@@ -72,4 +72,6 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
+    icon = pg.image.load('resources/icon.jpg')
+    pg.display.set_icon(icon)
     game.run()
