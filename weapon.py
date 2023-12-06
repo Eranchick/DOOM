@@ -75,7 +75,7 @@ class Weapon(AnimatedSprite):
 
     def draw(self):
         self.weapon_pos = (HALF_WIDTH - self.images[0].get_width() // 2,
-                           HEIGHT - self.images[0].get_height() + 15 + float(math.sin(pg.time.get_ticks() / 600) * 15) * SCREEN_RES_SCALE)
+                           HEIGHT - self.images[0].get_height() + 15 + float(math.sin(pg.time.get_ticks() / 600) * 15) * SCREEN_RES_SCALE - self.game.ui.in_level_ui_height)
         self.game.screen.blit(self.images[0], self.weapon_pos)
 
     def update(self):
