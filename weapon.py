@@ -7,15 +7,15 @@ class Weapon(AnimatedSprite):
         self.game = game
         self.path = path
         self.root_path = self.path
-        self.weapon_index = 0  # index in self.weapons list
-        self.weapons = ('shotgun', 'chainsaw')  # all weapons of game
-        self.weapons_inventory = ['shotgun']
+        self.weapon_index = 0  # index in self.weapons_inventory list
+        self.weapons = ('hands', 'shotgun', 'chainsaw', '2-shotgun', 'bfg', 'gun', 'machinegun', 'plasmagun', 'rpg')  # all weapons of game
+        self.weapons_inventory = ['hands']
 
-        self.weapons_max_attack_dist = {'shotgun': 20, 'chainsaw': 4}  # max attack distance
-        self.weapons_damage = {'shotgun': 50, 'chainsaw': 150}  # damage
-        self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 0.6}  # scale
-        self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90}  # animation time
-        self.weapons_ammo = {'shotgun': PLAYER_START_AMMO, 'chainsaw': '-'}
+        self.weapons_max_attack_dist = {'shotgun': 20, 'chainsaw': 4, 'hands': 4}  # max attack distance
+        self.weapons_damage = {'shotgun': 50, 'chainsaw': 150, 'hands': 20}  # damage
+        self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 6, 'hands': 6}  # scale
+        self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90, 'hands': 120}  # animation time
+        self.weapons_ammo = {'shotgun': PLAYER_START_AMMO, 'chainsaw': '-', 'hands': '-'}
 
         self.weapons_index_letters = self.weapons_inventory[self.weapon_index]  # weapon index like 'shotgun', not 0
 
@@ -24,7 +24,7 @@ class Weapon(AnimatedSprite):
         self.animation_time = self.weapons_animation_time[self.weapons_index_letters]
         self.ammo = self.weapons_ammo[self.weapons_index_letters]
         path = 'resources/sprites/weapon/'
-        super().__init__(game=game, path=path + self.weapons[self.weapon_index] + '/0.png', scale=self.scale,
+        super().__init__(game=game, path=path + self.weapons_index_letters + '/0.png', scale=self.scale,
                          animation_time=self.animation_time)
         self.images = deque(
             [pg.transform.smoothscale(img, (self.image.get_width() * self.scale * SCREEN_RES_SCALE, self.image.get_height() * self.scale * SCREEN_RES_SCALE))
