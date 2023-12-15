@@ -13,6 +13,7 @@ class Player:
         self.rel = 0
         self.health_recovery_delay = 1
         self.time_prev = pg.time.get_ticks()
+        self.armor = 50
 
     def recovery_health(self):
         if self.check_health_recovry_delay() and self.health < PLAYER_MAX_HEALTH:
@@ -32,17 +33,20 @@ class Player:
             self.game.new_game()
 
     def get_damage(self, damage):
-        self.health -= damage
+        self.health -= int(damage * (1 - self.armor / 100))
         self.game.object_renderer.player_damage()
         self.game.sound.player_pain.play()
         self.check_game_over()
 
     def single_fire_event(self, event):
         if event.type == pg.MOUSEBUTTONDOWN:
-            if event.button == 1 and not self.shot and not self.game.weapon.reloading:
+            if event.button == 1 and not self.shot and not self.game.weapon.reloading and self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] != 0:
                 self.game.sound.shotgun.play()
                 self.shot = True
                 self.game.weapon.reloading = True
+                if self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] != '-':
+                    self.game.weapon.weapons_ammo[self.game.weapon.weapons_index_letters] -= 1
+
 
     def movement(self):
         sin_a = math.sin(self.angle)

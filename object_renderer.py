@@ -9,31 +9,19 @@ class ObjectRenderer:
         self.sky_image = self.get_texture('resources/textures/sky.png', (WIDTH, HALF_HEIGHT))
         self.sky_offset = 0
         self.blood_screen = self.get_texture('resources/textures/blood_screen.png', RES)
-        self.digit_size = 90
-        self.digit_images = [self.get_texture(f'resources/textures/digits/{i}.png', [self.digit_size] * 2)
-                             for i in range(11)]
-        self.digits = dict(zip(map(str, range(11)), self.digit_images))
         self.game_over_image = self.get_texture('resources/textures/game_over.png', RES)
         self.win_image = self.get_texture('resources/textures/win.png', RES)
         self.arial_font = None
 
-
     def draw(self):
         self.draw_background()
         self.render_game_object()
-        self.draw_player_health()
 
     def win(self):
         self.screen.blit(self.win_image, (0, 0))
 
     def game_over(self):
         self.screen.blit(self.game_over_image, (0, 0))
-
-    def draw_player_health(self):
-        health = str(self.game.player.health)
-        for i, char in enumerate(health):
-            self.screen.blit(self.digits[char], (i * self.digit_size, 0))
-        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size, 0))
 
     def draw_debug(self):
         pass
