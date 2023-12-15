@@ -11,11 +11,11 @@ class Weapon(AnimatedSprite):
         self.weapons = ('hands', 'shotgun', 'chainsaw', '2-shotgun', 'bfg', 'gun', 'machinegun', 'plasmagun', 'rpg')  # all weapons of game
         self.weapons_inventory = ['hands']
 
-        self.weapons_max_attack_dist = {'shotgun': 20, 'chainsaw': 4, 'hands': 4}  # max attack distance
-        self.weapons_damage = {'shotgun': 50, 'chainsaw': 150, 'hands': 20}  # damage
-        self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 6, 'hands': 6}  # scale
-        self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90, 'hands': 120}  # animation time
-        self.weapons_ammo = {'shotgun': PLAYER_START_AMMO, 'chainsaw': '-', 'hands': '-'}
+        self.weapons_max_attack_dist = {'shotgun': 20, 'chainsaw': 4, 'hands': 4, '2-shotgun': 20, 'bfg': 15, 'gun': 10, 'machinegun': 15, 'plasmagun': 17, 'rpg': 25}  # max attack distance
+        self.weapons_damage = {'shotgun': 50, 'chainsaw': 150, 'hands': 20, '2-shotgun': 100, 'bfg': 600, 'gun': 15, 'machinegun': 10, 'plasmagun': 25, 'rpg': 75}  # damage
+        self.weapons_scale = {'shotgun': 0.4, 'chainsaw': 6, 'hands': 6, '2-shotgun': 6, 'bfg': 6, 'gun': 6, 'machinegun': 6, 'plasmagun': 6, 'rpg': 6}  # scale
+        self.weapons_animation_time = {'shotgun': 90, 'chainsaw': 90, 'hands': 120, '2-shotgun': 90, 'bfg': 90, 'gun': 90, 'machinegun': 15, 'plasmagun': 90, 'rpg': 90}  # animation time
+        self.weapons_ammo = {'shotgun': PLAYER_START_AMMO, 'chainsaw': '-', 'hands': '-', '2-shotgun': PLAYER_START_AMMO, 'bfg': PLAYER_START_AMMO, 'gun': PLAYER_START_AMMO, 'machinegun': PLAYER_START_AMMO, 'plasmagun': PLAYER_START_AMMO, 'rpg': PLAYER_START_AMMO} 
 
         self.weapons_index_letters = self.weapons_inventory[self.weapon_index]  # weapon index like 'shotgun', not 0
 
