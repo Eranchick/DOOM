@@ -1,7 +1,7 @@
 import math
 from screeninfo import get_monitors
 
-SCREEN_RES_SCALE = 0.34  # scaleing screen res (0 < N <= 1)
+SCREEN_RES_SCALE = 1  # scaleing screen res (0 < N <= 1)
 
 # calculating screen res
 scr = str(get_monitors()[0])[7:]  # getting monitor info
