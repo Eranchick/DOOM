@@ -117,3 +117,24 @@ class WeaponSprite(SpriteObject):
             self.game.weapon.weapon_index = len(self.game.weapon.weapons_inventory) - 1
             self.game.weapon.update_weapon()
             self.game.object_handler.sprite_list.remove(self)
+
+class AmmoSprite(SpriteObject):
+    def __init__(self, game, path='resources/sprites/ammo.png',
+                 pos=(11.5, 3.5), scale=0.1, shift=5):
+        self.pos = pos
+        super().__init__(game, path, pos, scale, shift)
+        self.path = path
+        self.image = self.get_images(self.path)
+
+    def get_images(self, path):
+        return pg.image.load(path).convert_alpha()
+
+    def update(self):
+        super().update()
+        self.collect()
+
+    def collect(self):
+        if ((self.pos[0] - self.player.x) ** 2 + (self.pos[1] - self.player.y) ** 2) <= 1:
+            self.game.weapon.weapons_ammo = {'shotgun': 60, 'chainsaw': '-', 'hands': '-', '2-shotgun': 60, 'bfg': 10, 'gun': 40, 'machinegun': 300, 'plasmagun': 80, 'rpg': 20}
+            self.game.weapon.update_weapon()
+            self.game.object_handler.sprite_list.remove(self)

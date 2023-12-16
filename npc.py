@@ -130,7 +130,11 @@ class NPC(AnimatedSprite):
         ray_angle = self.theta
 
         sin_a = math.sin(ray_angle)
+        if sin_a == 0:
+            sin_a = 0.0001
         cos_a = math.cos(ray_angle)
+        if cos_a == 0:
+            cos_a = 0.0001
 
         # horizontals
         y_hor, dy = (y_map + 1, 1) if sin_a > 0 else (y_map - 1e-6, -1)

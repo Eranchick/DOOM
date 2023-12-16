@@ -32,21 +32,21 @@ class UI:
             if char == '-':
                 char = '11'
             self.screen.blit(self.digits[char],
-                             (i * self.digit_size + (WIDTH * 0.06625), HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                             (i * self.digit_size + (WIDTH * 0.06625), HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
 
     def draw_player_health(self):
         health = str(self.game.player.health)
         for i, char in enumerate(health):
-            self.screen.blit(self.digits[char], (i * self.digit_size + WIDTH * 0.26125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
-        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size + WIDTH * 0.26125, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+            self.screen.blit(self.digits[char], (i * self.digit_size + WIDTH * 0.26125, HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
+        self.screen.blit(self.digits['10'], ((i + 1) * self.digit_size + WIDTH * 0.26125, HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
 
     def draw_player_armor(self):
         armor = str(self.game.player.armor)
         for i, char in enumerate(armor):
             self.screen.blit(self.digits[char],
-                             (i * self.digit_size + WIDTH * 0.61, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                             (i * self.digit_size + WIDTH * 0.61, HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
         self.screen.blit(self.digits['10'],
-                         ((i + 1) * self.digit_size + WIDTH * 0.61, HEIGHT - self.digit_size - (77 * SCREEN_RES_SCALE)))
+                         ((i + 1) * self.digit_size + WIDTH * 0.61, HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
 
     @staticmethod
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):

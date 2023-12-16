@@ -14,6 +14,11 @@ class ObjectHandler:
         add_npc = self.add_npc
         self.npc_positions = {}
 
+        # spawn ammo
+        self.ammo = 20  # ammo count
+        self.restricted_area = {(i, j) for i in range(10) for j in range(10)}
+        self.spawn_ammo()
+
         # spawn npc
         self.enemies = 20  # npc count
         self.npc_types = [SoldierNPC, CacoDemonNPC, CyberDemonNPC]
@@ -58,6 +63,13 @@ class ObjectHandler:
         #add_npc(CacoDemonNPC(game, pos=(5.5, 14.5)))
         #add_npc(CacoDemonNPC(game, pos=(5.5, 16.5)))
         #add_npc(CyberDemonNPC(game, pos=(14.5, 25.5)))
+
+    def spawn_ammo(self):
+        for i in range(self.ammo):
+                pos = x, y = randrange(self.game.map.cols), randrange(self.game.map.rows)
+                while (pos in self.game.map.world_map) or (pos in self.restricted_area):
+                    pos = x, y = randrange(self.game.map.cols), randrange(self.game.map.rows)
+                self.add_sprite(AmmoSprite(self.game, pos=(x + 0.5, y + 0.5)))
 
     def spawn_npc(self):
         for i in range(self.enemies):
