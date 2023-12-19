@@ -13,19 +13,7 @@ class UI:
         self.in_level_ui = self.get_texture('resources/textures/UI/in_level.png', (WIDTH, WIDTH / 11.636363636363))
         self.in_level_ui_height = self.in_level_ui.get_height()
 
-        # face
         self.face_size = int((HEIGHT / (15 * SCREEN_RES_SCALE)) * SCREEN_RES_SCALE)
-        self.face81 = [self.get_texture(f'resources/textures/UI/doomguy_face/0/{i}.png', [self.face_size] * 2)  # 81 <= health <= 100
-                       for i in range(10)]
-        self.face61 = [self.get_texture(f'resources/textures/UI/doomguy_face/1/{i}.png', [self.face_size] * 2)  # 61 <= health <= 80
-                       for i in range(10)]
-        self.face41 = [self.get_texture(f'resources/textures/UI/doomguy_face/2/{i}.png', [self.face_size] * 2)  # 41 <= health <= 60
-                       for i in range(10)]
-        self.face21 = [self.get_texture(f'resources/textures/UI/doomguy_face/3/{i}.png', [self.face_size] * 2)  # 21 <= health <= 40
-                       for i in range(10)]
-        self.face1 = [self.get_texture(f'resources/textures/UI/doomguy_face/4/{i}.png', [self.face_size] * 2)  # 1 <= health <= 20
-                       for i in range(10)]
-        self.invisbity = self.get_texture('resources/textures/UI/doomguy_face/0.png', [self.face_size] * 2)
 
     def update(self):
         self.draw_ui()
@@ -59,8 +47,24 @@ class UI:
                              (i * self.digit_size + (WIDTH * 0.06625),
                               HEIGHT - self.digit_size - (60 * SCREEN_RES_SCALE)))
 
-    def head(self):
+        # face
+        self.face()
+
+    def face(self):
         health = self.game.player.health
+        angle = self.game.player.angle
+        closest_npc_pos = (9999 + self.game.player.pos[0], 9999 + self.game.player.pos[1])
+        for npc in self.game.object_handler.npc_list:
+            dist = math.sqrt(abs(npc.x - self.game.player.x) ** 2 + abs(npc.y - self.game.player.y) ** 2)
+            if dist <= 15:
+                closest_npc_pos = npc.x, npc.y
+        health_index = (health - 1) // 20
+        face_index = 0
+        if health > 80:
+            img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size))
+            self.screen.blit(img,
+                             (HALF_WIDTH,
+                              HEIGHT - self.face_size - (60 * SCREEN_RES_SCALE)))
 
     @staticmethod
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):
