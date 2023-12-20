@@ -9,6 +9,7 @@ class RayCasting:
         self.ray_casting_result = []
         self.objects_to_render = []
         self.textures = self.game.object_renderer.wall_textures
+        self.straight_ox, self.straight_oy = 0, 0
 
     def get_objects_to_render(self):
         self.objects_to_render = []
@@ -99,6 +100,9 @@ class RayCasting:
             self.ray_casting_result.append((depth, proj_height, texture, offset))
 
             ray_angle += DELTA_ANGLE
+
+            if ray_angle == self.game.player.angle:
+                self.straight_ox, self.straight_oy = ox, oy
 
     def update(self):
         self.ray_cast()

@@ -1,3 +1,5 @@
+import math
+
 from settings import *
 from pygame import *
 from object_renderer import *
@@ -13,7 +15,7 @@ class UI:
         self.in_level_ui = self.get_texture('resources/textures/UI/in_level.png', (WIDTH, WIDTH / 11.636363636363))
         self.in_level_ui_height = self.in_level_ui.get_height()
 
-        self.face_size = int((HEIGHT / (15 * SCREEN_RES_SCALE)) * SCREEN_RES_SCALE)
+        self.face_size = int((HEIGHT / (8 * SCREEN_RES_SCALE)) * SCREEN_RES_SCALE)
 
     def update(self):
         self.draw_ui()
@@ -52,18 +54,34 @@ class UI:
 
     def face(self):
         health = self.game.player.health
-        angle = self.game.player.angle
-        closest_npc_pos = (9999 + self.game.player.pos[0], 9999 + self.game.player.pos[1])
+        pos = self.game.player.pos
+        p_forward = pos[0] + self.game.raycasting.straight_ox, pos[1] + self.game.raycasting.straight_oy
+        closest_npc_pos = (9999 + self.game.player.pos[0], self.game.player.pos[1])
         for npc in self.game.object_handler.npc_list:
             dist = math.sqrt(abs(npc.x - self.game.player.x) ** 2 + abs(npc.y - self.game.player.y) ** 2)
             if dist <= 15:
                 closest_npc_pos = npc.x, npc.y
+
+        v1 = (pos[0] - p_forward[0], pos[1] - p_forward[1])
+        v2 = (closest_npc_pos[0] - pos[0], closest_npc_pos[1] - pos[1])
+        angle = math.atan2(v2[1], v2[0]) - math.atan2(v1[1], v1[0])
+        ang_between = angle
+        if self.game.raycasting.objects_to_render != []:
+            face_index = 1
+        elif abs(ang_between) <= math.pi / 4:
+            face_index = 1
+        elif ang_between <= math.pi / 2:
+            face_index = 0
+        elif ang_between <= -math.pi / 2:
+            face_index = 2
+        else:
+            face_index = 3
+
         health_index = (health - 1) // 20
-        face_index = 0
-        img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size))
+        img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size, self.face_size))
         self.screen.blit(img,
-                         (HALF_WIDTH,
-                          HEIGHT - self.face_size - (60 * SCREEN_RES_SCALE)))
+                         (HALF_WIDTH - img.get_width() / 2,
+                          HEIGHT - self.face_size - (12.5 * SCREEN_RES_SCALE)))
 
     @staticmethod
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):

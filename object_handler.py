@@ -15,7 +15,7 @@ class ObjectHandler:
         self.npc_positions = {}
 
         # spawn ammo
-        self.ammo = 20  # ammo count
+        self.ammo = 5  # ammo count
         self.restricted_area = {(i, j) for i in range(10) for j in range(10)}
         self.spawn_ammo()
 
@@ -53,6 +53,7 @@ class ObjectHandler:
 
         # weapon
         add_sprite(WeaponSprite(game, scale=0.2, shift=2.5)) # path='resources/sprites/weapon/chainsaw/map/map.png',pos=(11.5, 3.5), scale=0.8, shift=0.15)
+        add_sprite(WeaponSprite(game, scale=0.2, shift=2.5, pos=(6.5, 1.5), path='resources/sprites/weapon/bfg/map/map.png'))
 
         # npc map
         #add_npc(SoldierNPC(game, pos=(11.0, 19.0)))
