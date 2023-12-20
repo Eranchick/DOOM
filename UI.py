@@ -60,11 +60,10 @@ class UI:
                 closest_npc_pos = npc.x, npc.y
         health_index = (health - 1) // 20
         face_index = 0
-        if health > 80:
-            img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size))
-            self.screen.blit(img,
-                             (HALF_WIDTH,
-                              HEIGHT - self.face_size - (60 * SCREEN_RES_SCALE)))
+        img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size))
+        self.screen.blit(img,
+                         (HALF_WIDTH,
+                          HEIGHT - self.face_size - (60 * SCREEN_RES_SCALE)))
 
     @staticmethod
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):
