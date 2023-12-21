@@ -24,7 +24,7 @@ class ObjectHandler:
         self.npc_types = [SoldierNPC, CacoDemonNPC, CyberDemonNPC]
         self.weights = [70, 20, 10]
         self.restricted_area = {(i, j) for i in range(10) for j in range(10)}
-        self.spawn_npc()
+        #self.spawn_npc()
 
         # sprite map
         add_sprite(SpriteObject(game))
@@ -62,7 +62,7 @@ class ObjectHandler:
         #add_npc(SoldierNPC(game, pos=(2.0, 20.0)))
         #add_npc(SoldierNPC(game, pos=(4.0, 29.0)))
         #add_npc(CacoDemonNPC(game, pos=(5.5, 14.5)))
-        #add_npc(CacoDemonNPC(game, pos=(5.5, 16.5)))
+        add_npc(CacoDemonNPC(game, pos=(8.5, 5.5)))
         #add_npc(CyberDemonNPC(game, pos=(14.5, 25.5)))
 
     def spawn_ammo(self):

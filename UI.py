@@ -54,30 +54,32 @@ class UI:
 
     def face(self):
         health = self.game.player.health
+        angle = self.game.player.angle
         pos = self.game.player.pos
         p_forward = pos[0] + self.game.raycasting.straight_ox, pos[1] + self.game.raycasting.straight_oy
         closest_npc_pos = (9999 + self.game.player.pos[0], self.game.player.pos[1])
+        npc_in_radius = False
+        seeing_npc = False
         for npc in self.game.object_handler.npc_list:
             dist = math.sqrt(abs(npc.x - self.game.player.x) ** 2 + abs(npc.y - self.game.player.y) ** 2)
             if dist <= 15:
                 closest_npc_pos = npc.x, npc.y
+                npc_in_radius = True
+                if seeing_npc != True:
+                    seeing_npc = npc.ray_cast_value
 
-        v1 = (pos[0] - p_forward[0], pos[1] - p_forward[1])
-        v2 = (closest_npc_pos[0] - pos[0], closest_npc_pos[1] - pos[1])
-        angle = math.atan2(v2[1], v2[0]) - math.atan2(v1[1], v1[0])
-        ang_between = angle
-        if self.game.raycasting.objects_to_render != []:
+        v2 = (pos[0] - p_forward[0], pos[1] - p_forward[1])
+        v1 = (closest_npc_pos[0] - pos[0], closest_npc_pos[1] - pos[1])  # in development
+        angle2 = math.atan2(v2[1], v2[0]) - math.atan2(v1[1], v1[0])
+        if not npc_in_radius:
             face_index = 1
-        elif abs(ang_between) <= math.pi / 4:
+        elif seeing_npc and (angle2 <= HALF_FOV):
             face_index = 1
-        elif ang_between <= math.pi / 2:
-            face_index = 0
-        elif ang_between <= -math.pi / 2:
-            face_index = 2
         else:
             face_index = 3
 
         health_index = (health - 1) // 20
+        face_index = 1
         img = self.get_texture(f'resources/textures/UI/doomguy_face/{health_index}/{face_index}.png', (self.face_size, self.face_size))
         self.screen.blit(img,
                          (HALF_WIDTH - img.get_width() / 2,

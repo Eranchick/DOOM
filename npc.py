@@ -203,7 +203,7 @@ class CacoDemonNPC(NPC):
         self.attack_dist = 1.0
         self.health = 150
         self.attack_damage = 25
-        self.speed = 0.05
+        self.speed = 0.0  # 0.05
         self.accuracy = 0.35
 
 class CyberDemonNPC(NPC):
